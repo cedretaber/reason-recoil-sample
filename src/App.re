@@ -1,5 +1,5 @@
 let textState = Recoil.atom(~key="textState", ~default="");
-let charCountState = Recoil.selector(~key="charCountState", ~get=({get}) => get(textState) |> String.length |> string_of_int);
+let charCountState = Recoil.selector(~key="charCountState", ~get=({get}) => get(textState) |> String.length);
 
 module Input = {
   [@react.component]
