@@ -1,21 +1,21 @@
-let nameState = Recoil.atom(~key="nameState", ~default="");
-let charCountState = Recoil.selector(~key="charCountState", ~get=({get}) => get(nameState) |> String.length |> string_of_int);
+let textState = Recoil.atom(~key="textState", ~default="");
+let charCountState = Recoil.selector(~key="charCountState", ~get=({get}) => get(textState) |> String.length |> string_of_int);
 
 module Input = {
   [@react.component]
   let make = () => {
-    let (nameValue, setNameValue) = Recoil.useRecoilState(nameState);
+    let (textValue, setNameValue) = Recoil.useRecoilState(textState);
     let onChange = React.useCallback(e => setNameValue(e->ReactEvent.Form.target##value));
-    <div> <input value=nameValue onChange /> </div>;
+    <div> <input value=textValue onChange /> </div>;
   };
 };
 
 module Show = {
   [@react.component]
   let make = () => {
-    let nameValue = Recoil.useRecoilValue(nameState);
+    let textValue = Recoil.useRecoilValue(textState);
     let charCountValue = Recoil.useRecoilValue(charCountState);
-    <> <div> {j|Echo: $(nameValue)|j}->React.string </div> <div> {j|Character Count: $(charCountValue)|j}->React.string </div> </>;
+    <> <div> {j|Echo: $(textValue)|j}->React.string </div> <div> {j|Character Count: $(charCountValue)|j}->React.string </div> </>;
   };
 };
 
