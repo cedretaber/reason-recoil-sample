@@ -4,8 +4,8 @@ let charCountState = Recoil.selector(~key="charCountState", ~get=({get}) => get(
 module Input = {
   [@react.component]
   let make = () => {
-    let (textValue, setNameValue) = Recoil.useRecoilState(textState);
-    let onChange = React.useCallback(e => setNameValue(e->ReactEvent.Form.target##value));
+    let (textValue, setTextValue) = Recoil.useRecoilState(textState);
+    let onChange = React.useCallback(e => setTextValue(e->ReactEvent.Form.target##value));
     <div> <input value=textValue onChange /> </div>;
   };
 };
